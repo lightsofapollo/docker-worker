@@ -25,18 +25,22 @@ For example:
 
 ### Terminology
 
-message: an amqp message
-ack: an amqp ack
-nack: an amqp nack
+  - task definition: the task definition as defined by task cluster
+  - message: an amqp message
+  - ack: an amqp ack
+  - nack: an amqp nack
+  
+### Steps
 
 In the case where the worker is able to work on the task:
 
   - worker will issue a claim to the url ( additional information may be
     passed to the "claim" url via the POST body )
     
-      a. on a successful response the message will be ack'ed
-      b. on a unsuccessful response the message will be nack'ed (after
-         retries). Abort the next steps.
+      - a. on a successful response the message will be ack'ed.
+
+      - b. on a unsuccessful response the message will be nack'ed (after
+           retries). Abort the next steps.
 
   - worker will issue first heartbeat and continue to send heartbeats
     until completion.
